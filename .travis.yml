@@ -12,6 +12,7 @@ install:
 before_script:
 script:
   - docker build -t docker-texlive . --network host
+  - docker run --rm --network host -v "$TRAVIS_BUILD_DIR":"/LATEX" --workdir="/LATEX" docker-texlive make main.tex
   - docker run --rm --network host docker-texlive make main.tex
   - docker images
 after_failure:

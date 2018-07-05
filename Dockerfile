@@ -13,7 +13,7 @@ RUN export DEBIAN_FRONTEND="noninteractive"\
  && apt-get update -qq \
     ## Install TeX Live and ghostscript
  && apt-get install --no-install-recommends -qq \
-        texlive-full \
+        texlive-latex-recommended \
         texlive-fonts-extra \
         texlive-fonts-recommended \
         texlive-lang-english \
@@ -25,6 +25,7 @@ RUN export DEBIAN_FRONTEND="noninteractive"\
         biber \
     ## Install latexmk for automated build
         latexmk \
+        make \
     ## Install linting utilities
         chktex \
         lacheck \
