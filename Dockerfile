@@ -1,7 +1,7 @@
 # Use an official Ubuntu as a parent image
 FROM ubuntu:18.04
 
-LABEL maintainer="lzutao https://github.com/lzutao/docker-ibus-unikey"
+LABEL maintainer="lzutao https://github.com/lzutao/docker-texlive"
 
 # Set the working directory to /root
 WORKDIR /root
@@ -12,7 +12,7 @@ ENV LANG="C.UTF-8"
 RUN export DEBIAN_FRONTEND="noninteractive"\
  && apt-get update -qq \
     ## Install TeX Live and ghostscript
- && apt-get --no-install-recommends -qq \
+ && apt-get install --no-install-recommends -qq \
         texlive-full \
         texlive-fonts-extra \
         texlive-fonts-recommended \
