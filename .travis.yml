@@ -1,7 +1,7 @@
 dist: trusty
 sudo: required
 # Not really suit, we just build docker
-language: perl
+language: c
 services:
   - docker      # docker still need sudo to start its service
 git:
