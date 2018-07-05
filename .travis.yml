@@ -12,12 +12,19 @@ install:
 before_script:
 script:
   - docker build -t docker-texlive . --network host
-  - docker run --rm --network host -v "$TRAVIS_BUILD_DIR":"/LATEX" --workdir="/LATEX" docker-texlive make main.tex
-  - docker run --rm --network host docker-texlive make main.tex
+  - docker run --rm --network host -v "$TRAVIS_BUILD_DIR":"/LATEX" --workdir="/LATEX" docker-texlive make PROJNAME=main
+  - ls -la
   - docker images
 after_failure:
 after_failure:
 before_deploy:
 deploy:
+  # Read more https://docs.travis-ci.com/user/deployment/releases/
+  provider: releases
+  api_key: "$GITHUB_OAUTH_TOKEN"
+  file: main.pdf
+  skip_cleanup: true
+  on:
+    tags: true
 after_deploy:
 after_script:

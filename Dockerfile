@@ -10,9 +10,8 @@ ENV LANG="C.UTF-8"
 
 # Prepare to installing texlive packages
 RUN export DEBIAN_FRONTEND="noninteractive"\
- && apt-get update -qq \
+ && apt-get update -qq && apt-get install --no-install-recommends -qq \
     ## Install TeX Live and ghostscript
- && apt-get install --no-install-recommends -qq \
         texlive-latex-recommended \
         texlive-fonts-extra \
         texlive-fonts-recommended \
