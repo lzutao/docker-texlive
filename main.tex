@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\usepackage{hyperref}
+\usepackage{longtable}
+%\usepackage{minted}
+\usepackage{booktabs}
+
+
+\title{\huge\textbf{Perl 6 Cheatsheet}}
+\author{Suman \\ \texttt{suman81765@gmail.com}\\ Kathmandu, Nepal}
+\date{July 20, 2017}
+
+\begin{document}
+	\maketitle
+	\section{Regular Expressions}
+	\begin{longtable}{p{0.25\linewidth}p{0.75\linewidth}}
+		\toprule
+		\verb!~~!   & Smart match operator. \\
+		\verb!$/!  & Variable that contains the matched part of string. \\
+		\verb!~$/! & Stringify the \verb!$/! variable. \\
+		\verb!.match!  & Method invocation syntax. \\
+		\verb!/ /!  & Pattern is kept between a pair of slash delimiters.\\
+		\verb|m/ /| or \verb|m{ }|	& Can use other delimiters except\ a pair of slash if we prefix the pattern with the letter``\verb|m|"\\
+		\verb|rx/ /| or \verb|rx{ }| & 	signifies a pattern which can be stored in a variable\\
+		\verb|.| & matches any character\\
+		\verb|\w| &	word character, matches one single alphanumeric character (alphabetical characters, digits and \verb|_| character)\\		
+		\verb|\W|	& any other character than \verb|\w|\\
+		\verb|\d|	& digits\\
+		\verb|\D|	& non-digits\\
+		\verb|\s|	& any kind of whitespace, not just vertical whitespace.\\
+		\verb|\S|	& non-whitespace\\
+		\verb|\n|	& newline\\
+		\verb|\N|	& non-newline\\
+		
+		\verb|\h| & matches a single horizontal whitespace character.\\
+		\verb|\H| & matches a single character that is not a horizontal whitespace character.\\
+		
+		\verb|\t| & matches a single tab character.\\
+		\verb|\T| & matches a single character that is not a tab.\\
+		\verb|\v| & matches a single vertical whitespace character.\\
+		\verb|\V| & matches a single character that is not vertical whitespace.\\		
+		\verb|<[ ]>|	& character class\\
+		\verb|<foo>| & subrule\\
+		\verb|<-[ ]>|	& Negating character class\\
+		\verb|^|	& anchor representing beginning of the string\\
+		\verb|^^|	& start of line in multiline strings\\
+		\verb|$|	& anchor representing end of the string\\
+		\verb|$$|	& end of line in multiline strings\\
+		\verb|<?before string>|	& match that comes before the string\\
+		\verb|<!before string>|	& match that does not come before the string\\
+		\verb|<?after string>|	& match that comes after the string\\
+		\verb|<!after string>|	& match that does not come after the string\\
+		\verb|<?{ }|	& Code assertion which will match if code block returns a true value\\
+		\verb|<!{ }|	& Code assertion which will match unless the code block returns a true value\\
+		\verb!||!	& First match alternation\\
+		\verb!|!	& Longest match alternation\\
+		\verb|( )|	& Capturing\\
+		\verb|$0, $1|	& capture numbers, first and second items of the matched object in list context\\
+		\verb|:i, :ignorecase|	& Ignore upper or lower case\\
+		\verb|:s,:sigspace|	& adverb that makes whitespace significant in regex pattern\\				
+		\verb|:m|   & ignore marks\\
+		\verb|:g|   & global\\
+		\verb|:r|   & ratchet\\
+		\verb!<|w>! & match a word boundary\\
+		\texttt{<!|w>} & not match a word boundary\\
+		\verb|<<| & matches a left word boundary.\\
+		\verb|>>| & matches a right word boundary.\\
+		\bottomrule
+		
+		
+		
+	\end{longtable}
+
+
+\subsection{Predefined subrules}
+\begin{tabular}{p{0.2\textwidth}p{0.2\textwidth}p{0.6\textwidth}}
+	\toprule
+	\verb|<alnum>|   & \verb|\w|      & `alpha' plus `digit'\\
+	\verb|<alpha>|   & \verb|<:L>|     & Alphabetic characters\\
+	\verb|<blank>|   & \verb|\h|      &  Horizontal whitespace\\
+	\verb|<cntrl>|  &        &   Control characters\\
+	\verb|<digit>|  &  \verb|\d|   &    Decimal digits\\
+	\verb|<graph>|  &       &   `alnum' plus `punct'\\
+	\verb|<lower>|  & \verb|<:Ll>|  &  Lowercase characters\\
+	\verb|<print>|  &       &   `graph' plus `space', but no `cntrl'\\
+	\verb|<punct>|  &      &    Punctuation and Symbols (only Punct beyond ASCII)\\
+	\verb|<space>| &  \verb|\s|    &   Whitespace\\
+	\verb|<upper>| &  \verb|<:Lu>|  &  Uppercase characters\\
+	\texttt{<|wb>}   &       &     Word Boundary (zero-width assertion)\\
+	\verb|<ww>|   &       &    Within Word (zero-width assertion)\\
+	\verb|<xdigit>| &     &    Hexadecimal digit [0-9A-Fa-f]\\
+	\bottomrule
+	
+	
+	
+	
+	
+\end{tabular}
+
+\subsection{Quantifiers}
+\begin{tabular}{p{0.2\linewidth}p{0.8\linewidth}}
+	\toprule
+	\verb|+|	& matching preceding character one or more times. Quantifiers bind tighter than concatenation, so \verb|ab+| matches one a followed by one or more b's. This is different for quotes, so \verb|`ab'+| matches the strings ab, abab, ababab etc.\\
+	\verb|*|	& matching preceding character zero or more times\\
+	\verb|?|	& matching preceding character zero or one match\\
+	\verb|** min..max|	& at least \verb|min| and at most \verb|max| times.\\
+	\verb|%| & modified quantifier\\
+	\verb|:| & prevent backtracking\\
+	\bottomrule
+	
+\end{tabular}
+
+\vspace{20mm}	
+	Perl 6 is Unicode compliant.
+	
+	Whitespace is usually not significant within regex patterns unless specified with \verb|:s| or \verb|:sigspace| adverb.
+	
+	
+	
+	
+	
+	
+\end{document}
