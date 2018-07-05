@@ -1,0 +1,26 @@
+dist: trusty
+sudo: required
+# Enable C++ support
+language: cpp
+services:
+  - docker      # docker still need sudo to start its service
+git:
+  depth: 1
+  submodules: false
+before_install:
+install:
+before_script:
+script:
+  - docker build -t ibus-unikey . --network host
+  - docker run --rm --network host ibus-unikey dpkg -l | egrep 'libibus-1.0-dev|libgtk2.0-dev|meson'
+  - docker images
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin
+  - docker tag ibus-unikey "$DOCKER_USERNAME"/ibus-unikey
+  - docker push "$DOCKER_USERNAME"/ibus-unikey
+after_failure:
+after_failure:
+before_deploy:
+deploy:
+after_deploy:
+after_script:
