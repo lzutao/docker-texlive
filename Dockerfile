@@ -33,7 +33,7 @@ RUN export DEBIAN_FRONTEND="noninteractive"\
         #pandoc=1.16*\
         #pandoc-citeproc=0.9*\
     ## Install minted's dependency
-        python-pygments
+        python-pygments \
     ## Free huge amount of unused space
  && apt-get clean \
  && apt-get autoremove \
