@@ -16,7 +16,6 @@ RUN export DEBIAN_FRONTEND="noninteractive"\
         texlive-full \
         texlive-fonts-extra \
         texlive-fonts-recommended \
-        texlive-math-extra \
         texlive-lang-english \
         # For Vietnamese
         texlive-lang-other \
