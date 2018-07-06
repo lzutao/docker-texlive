@@ -12,16 +12,12 @@ before_install:
 install:
 before_script:
 script:
-  - docker pull docker-texlive . --network host
   - docker run
       --rm
       --network host
       -v "$TRAVIS_BUILD_DIR":"/LATEX"
       --workdir="/LATEX"
-      lzutao/docker-texlive bash -c "
-        lacheck main.tex &&
-        chktex main.tex &&
-        make PROJNAME=main"
+      lzutao/docker-texlive bash -c "lacheck main.tex; chktex main.tex; make PROJNAME=main"
   - docker images
 after_failure:
 after_failure:
