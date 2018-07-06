@@ -4,53 +4,14 @@ FROM ubuntu:18.04
 LABEL maintainer="lzutao https://github.com/lzutao/docker-texlive"
 
 # Set the working directory to /root
-WORKDIR /root
+WORKDIR /tmp/workdir
 
 ENV LANG="C.UTF-8"
 
-# Prepare to installing texlive packages
-RUN export DEBIAN_FRONTEND="noninteractive"\
- && apt-get update -qq && apt-get install --no-install-recommends -qq \
-    ## Install TeX Live and ghostscript
-        texlive-latex-recommended \
-        texlive-fonts-extra \
-        texlive-fonts-recommended \
-        texlive-lang-english \
-        # For Vietnamese
-        texlive-lang-other \
-        # For minted
-        texlive-latex-extra \
-    ## Install biber for bibliography
-        biber \
-    ## Install latexmk for automated build
-        latexmk \
-        make \
-    ## Install linting utilities
-        chktex \
-        lacheck \
-    ## Install pandoc
-        #pandoc=1.16*\
-        #pandoc-citeproc=0.9*\
-    ## Install minted's dependency
-        python-pygments \
-    ## Free huge amount of unused space
- && apt-get clean \
- && apt-get autoremove \
- && rm -rf \
-        /var/lib/apt/lists/* \
-        ## Remove temp file
-        /tmp/* \
-        /var/tmp/* \
-        ## Remove unused manpage
-        /usr/share/man/?? \
-        /usr/share/man/??_* \
-        /usr/share/man/??.* \
-    ## Remove unused locales
- && find /usr/share/locale \
-        -mindepth 1 \
-        -maxdepth 1 \
-        ! -name 'en' \
-        -exec rm -rf {} +
+COPY ./boostrap.sh ./
+
+# Install texlive packages
+RUN bash ./boostrap.sh
 
 # Run command when the container launches
 #CMD ["echo", "hello world!"]

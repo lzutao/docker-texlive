@@ -8,11 +8,20 @@ git:
   depth: 1
   submodules: false
 before_install:
+  - docker pull lzutao/docker-texlive
 install:
 before_script:
 script:
-  - docker build -t docker-texlive . --network host
-  - docker run --rm --network host -v "$TRAVIS_BUILD_DIR":"/LATEX" --workdir="/LATEX" docker-texlive make PROJNAME=main
+  - docker pull docker-texlive . --network host
+  - docker run
+      --rm
+      --network host
+      -v "$TRAVIS_BUILD_DIR":"/LATEX"
+      --workdir="/LATEX"
+      lzutao/docker-texlive bash -c "
+        lacheck main.tex &&
+        chktex main.tex &&
+        make PROJNAME=main"
   - docker images
 after_failure:
 after_failure:
