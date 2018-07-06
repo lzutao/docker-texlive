@@ -27,10 +27,12 @@ compiler:
 before_install:
   - docker pull lzutao/docker-texlive
 script:
-  - docker run --rm -v "$TRAVIS_BUILD_DIR":"/LATEX" --workdir="/LATEX" lzutao/docker-texlive bash -c "
-        lacheck main.tex
-      && chktex main.tex
-      && make main.tex"
+  - docker run
+      --rm
+      --network host
+      -v "$TRAVIS_BUILD_DIR":"/LATEX"
+      --workdir="/LATEX"
+      lzutao/docker-texlive bash -c "make lint PROJNAME=main"
 ```
 
 ## LICENSE
