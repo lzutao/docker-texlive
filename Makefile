@@ -23,7 +23,7 @@ PROJNAME=main
 # You want $(LATEXMK) to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
 # file of the given name existing.
-.PHONY: all clean clean-all
+.PHONY: all clean clean-all lint
 
 # The first rule in a Makefile is the one executed by default ("make"). It
 # should always be the "all" rule, so that "make" and "make all" are identical.
@@ -37,6 +37,11 @@ all: $(PROJNAME).pdf
 	$(LATEXMK) $(LATEXMKOPT) $<
 
 $(PROJNAME).pdf: $(PROJNAME).tex
+	$(LATEXMK) $(LATEXMKOPT) $<
+
+lint: $(PROJNAME).tex
+	-lacheck $<
+	-chktex $<
 	$(LATEXMK) $(LATEXMKOPT) $<
 
 clean:

@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 
 LABEL maintainer="lzutao https://github.com/lzutao/docker-texlive"
 
-# Set the working directory to /root
+# Set the working directory
 WORKDIR /tmp/workdir
 
 ENV LANG="C.UTF-8"
