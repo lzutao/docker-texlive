@@ -1,6 +1,7 @@
 # docker-texlive
 
 [![Docker Build Status][docker shield]][docker hub]
+[![Build Status][travis shield]][travis repo]
 
 **Note**: Add `[ci skip]` or `[skip ci]` to the git commit message if you changed only this `README.md`.
 
@@ -41,6 +42,8 @@ script:
 
 [docker shield]: https://img.shields.io/docker/build/lzutao/docker-texlive.svg?style=flat-square
 [docker hub]: https://hub.docker.com/r/lzutao/docker-texlive/
+[travis shield]: https://travis-ci.com/lzutao/docker-texlive.svg?branch=master
+[travis repo]: https://travis-ci.com/lzutao/docker-texlive
 [ubuntu 18]: https://www.ubuntu.com/
 [minted]: https://www.ctan.org/pkg/minted
 [biber]: https://ctan.org/pkg/biber
