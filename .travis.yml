@@ -20,7 +20,6 @@ script:
       --workdir="/LATEX"
       lzutao/docker-texlive bash -c "make lint PROJNAME=main"
 after_failure:
-after_failure:
 before_deploy:
 deploy:
   # Read more https://docs.travis-ci.com/user/deployment/releases/
