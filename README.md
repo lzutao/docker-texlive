@@ -20,11 +20,9 @@ we have an example `.travis.yml`:
 ```yaml
 dist: trusty
 sudo: required
-language: cpp
+language: c         # simplest choice to TexLive
 services:
   - docker          # docker still needs sudo
-compiler:
-  - gcc
 before_install:
   - docker pull lzutao/docker-texlive
 script:
