@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-export DEBIAN_FRONTEND="noninteractive"
-
-apt-get update -qq
-
+#
 declare -a TEX_APPS=(
     texlive-latex-recommended
     texlive-fonts-extra
@@ -27,6 +24,13 @@ declare -a TEX_APPS=(
     #pandoc-citeproc
   )
 
+export DEBIAN_FRONTEND="noninteractive"
+
+## Change ubuntu mirror
+sed -i 's|archive.ubuntu.com|mirror.math.princeton.edu/pub|' /etc/apt/sources.list
+sed -i 's|security.ubuntu.com|mirror.math.princeton.edu/pub|' /etc/apt/sources.list
+
+apt-get update -qq
 
 ## Install TeX Live and ghostscript
 apt-get install --no-install-recommends -qq "${TEX_APPS[@]}"
