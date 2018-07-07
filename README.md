@@ -36,7 +36,7 @@ script:
 
 ## LICENSE
 
-**docker-texlive** is offered under the terms of the [MTT Licence][LICENCE].
+**docker-texlive** is offered under the terms of the [MIT Licence][LICENCE].
 
 [docker shield]: https://img.shields.io/docker/build/lzutao/docker-texlive.svg?style=flat-square
 [docker hub]: https://hub.docker.com/r/lzutao/docker-texlive/

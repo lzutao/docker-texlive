@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#
+# Run this file as ROOT
 declare -a TEX_APPS=(
     texlive-latex-recommended
     texlive-fonts-extra
@@ -31,6 +31,9 @@ sed -i 's|archive.ubuntu.com|mirror.math.princeton.edu/pub|' /etc/apt/sources.li
 sed -i 's|security.ubuntu.com|mirror.math.princeton.edu/pub|' /etc/apt/sources.list
 
 apt-get update -qq
+
+## debconf: package configuration
+apt-get install --no-install-recommends -qq apt-utils
 
 ## Install TeX Live and ghostscript
 apt-get install --no-install-recommends -qq "${TEX_APPS[@]}"
